@@ -22,8 +22,24 @@
 
 <script>
 function obliczBMI() {
-    var waga = document.getElementById("waga").value;
-    var wzrost = document.getElementById("wzrost").value;
+    var waga = parseFloat(document.getElementById("waga").value);
+    var wzrost = parseFloat(document.getElementById("wzrost").value);
+
+    // Walidacja danych
+    if (isNaN(waga) || isNaN(wzrost)) {
+        document.getElementById("wynik").innerHTML = "Uzupełnij wszystkie pola.";
+        return;
+    }
+
+    if (waga <= 0 || waga >= 200) {
+        document.getElementById("wynik").innerHTML = "Waga musi być z zakresu 0–200 kg.";
+        return;
+    }
+
+    if (wzrost <= 100 || wzrost >= 250) {
+        document.getElementById("wynik").innerHTML = "Wzrost musi być z zakresu 100–250 cm.";
+        return;
+    }
 
     // zamiana cm na metry
     wzrost = wzrost / 100;
@@ -48,4 +64,10 @@ function obliczBMI() {
 </script>
 
 </body>
+</html>
+
+
+
+</body>
+
 </html>
