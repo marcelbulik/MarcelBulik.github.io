@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -14,6 +13,11 @@
 
     Wzrost (cm):<br>
     <input type="number" id="wzrost"><br><br>
+
+    Pora pomiaru:<br>
+    <input type="radio" name="pora_pomiaru" value="rano"> Rano<br>
+    <input type="radio" name="pora_pomiaru" value="poludnie"> Południe<br>
+    <input type="radio" name="pora_pomiaru" value="wieczor"> Wieczór<br><br>
 
     <input type="button" value="Oblicz BMI" onclick="obliczBMI()">
 </form>
@@ -67,7 +71,4 @@ function obliczBMI() {
 </html>
 
 
-
-</body>
-
-</html>
+<hr>
