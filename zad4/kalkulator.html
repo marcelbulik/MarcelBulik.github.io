@@ -1,78 +1,74 @@
-<html>
+<html lang="pl">
 <head>
-  <meta http-equiv="Content-type" content="text/html; charset=ISO-8859-2" />  
-  <title>[ Tytul dokumentu ]</title>
+    <meta charset="UTF-8">
+    <title>Kalkulator BMI</title>
 </head>
 <body>
-<script language="JavaScript">
 
-function dodawanie() {
-/* Odwołanie do formularza i jego elementów przez nazwę*/
-var skl1=parseFloat(document.Form.a.value);
-var skl2=parseFloat(document.Form.b.value);
-var wynik = skl1+skl2;
-alert(wynik);
+<h2>Kalkulator BMI</h2>
+
+<form>
+    Waga (kg):<br>
+    <input type="number" id="waga"><br><br>
+
+    Wzrost (cm):<br>
+    <input type="number" id="wzrost"><br><br>
+
+    Pora pomiaru:<br>
+    <input type="radio" name="pora_pomiaru" value="rano"> Rano<br>
+    <input type="radio" name="pora_pomiaru" value="poludnie"> Południe<br>
+    <input type="radio" name="pora_pomiaru" value="wieczor"> Wieczór<br><br>
+
+    <input type="button" value="Oblicz BMI" onclick="obliczBMI()">
+</form>
+
+<p id="wynik"></p>
+
+<script>
+function obliczBMI() {
+    var waga = parseFloat(document.getElementById("waga").value);
+    var wzrost = parseFloat(document.getElementById("wzrost").value);
+
+    // Walidacja danych
+    if (isNaN(waga) || isNaN(wzrost)) {
+        document.getElementById("wynik").innerHTML = "Uzupełnij wszystkie pola.";
+        return;
+    }
+
+    if (waga <= 0 || waga >= 200) {
+        document.getElementById("wynik").innerHTML = "Waga musi być z zakresu 0–200 kg.";
+        return;
+    }
+
+    if (wzrost <= 100 || wzrost >= 250) {
+        document.getElementById("wynik").innerHTML = "Wzrost musi być z zakresu 100–250 cm.";
+        return;
+    }
+
+    // zamiana cm na metry
+    wzrost = wzrost / 100;
+
+    var bmi = waga / (wzrost * wzrost);
+    var opis = "";
+
+    if (bmi < 18.5) {
+        opis = "Niedowaga";
+    } else if (bmi < 25) {
+        opis = "Waga prawidłowa";
+    } else if (bmi < 30) {
+        opis = "Nadwaga";
+    } else {
+        opis = "Otyłość";
+    }
+
+    document.getElementById("wynik").innerHTML =
+        "Twoje BMI: " + bmi.toFixed(2) + "<br>" +
+        "Klasyfikacja: " + opis;
 }
 </script>
 
-<form name="Form">
-a=<input type="Text" name="a"><br>
-b=<input type="Text" name="b"><br>
-<input type="Button" value="Oblicz sumę" onclick="dodawanie()">
-</form>
-<hr>
+</body>
+</html>
 
-<script language="JavaScript">
-function odejmowanie() {
-/* Odwołanie do formularza i jego elementów przez indeks
-Formularz o nazwie jakas_wymyslona_nazwa1 jest drugim formularzem w dokumencie więc ma indeks równy 1
-Pole tekstowe o nazwie jakas_wymyslona_nazwa2 jest pierwszym elementem formularza więc ma indeks równy 0
-*/
-var skl1=parseFloat(document.forms[1].elements[0].value);
-var skl2=parseFloat(document.forms[1].elements[1].value);
-var wynik = skl1-skl2;
-alert(wynik);
-}
-</script>
-<form name="jakas_wymyslona_nazwa1">
-a=<input type="Text" name="jakas_wymyslona_nazwa2"><br>
-b=<input type="Text" name="jakas_wymyslona_nazwa3"><br>
-<input type="Button" value="Oblicz różnicę" onclick="odejmowanie()">
-</form>
-<hr>
 
-<script language="JavaScript">
-
-function mnozenie() {
-/* Odwołanie do formularza i jego elementów przez nazwę*/
-var skl1=parseFloat(document.test.a.value);
-var skl2=parseFloat(document.test.b.value);
-var wynik = skl1*skl2;
-alert(wynik);
-}
-</script>
-
-<form name="mnozenie">
-a=<input type="Text" name="a"><br>
-b=<input type="Text" name="b"><br>
-<input type="Button" value="Mnożenie" onclick="mnozenie()">
-</form>
-<hr>
-
-<script language="JavaScript">
-
-function dzielenie() {
-/* Odwołanie do formularza i jego elementów przez nazwę*/
-var skl1=parseFloat(document.stas.a.value);
-var skl2=parseFloat(document.stas.b.value);
-var wynik = skl1/skl2;
-alert(wynik);
-}
-</script>
-
-<form name="stas">
-a=<input type="Text" name="a"><br>
-b=<input type="Text" name="b"><br>
-<input type="Button" value="Oblicz dzielenie" onclick="dzielenie()">
-</form>
 <hr>
